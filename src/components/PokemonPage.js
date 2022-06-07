@@ -32,7 +32,7 @@ const PokemonPage = () => {
     <Container>
       <Stack gap={4}>
         <Search searchTerm={searchTerm} onChangeSearch={setSearchTerm} />
-        <PokemonCollection pokemon={pokemonsToDisplay} />
+        <PokemonCollection pokemon={pokemonsToDisplay} center />
       </Stack>
     </Container>
   );
