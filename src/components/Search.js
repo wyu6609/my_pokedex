@@ -8,7 +8,7 @@ const Search = ({ searchTerm, onChangeSearch }) => {
   };
 
   return (
-    <InputGroup className="mb-3" gap={3}>
+    <InputGroup className="mb-3 sticky-top" gap={3}>
       <FormControl
         placeholder="Search Pokemon"
         aria-label="Search Pokemon"
