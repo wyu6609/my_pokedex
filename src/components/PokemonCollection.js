@@ -7,7 +7,7 @@ const PokemonCollection = ({ pokemon }) => {
   const cards = pokemon.map((poke) => {
     return (
       <Col xs="auto">
-        <PokemonCard key={poke.id} pokemon={poke} />
+        <PokemonCard key={poke.data.id} pokemon={poke} />
       </Col>
     );
   });

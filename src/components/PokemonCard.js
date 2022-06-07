@@ -8,21 +8,10 @@ const capitalizeFirstLetter = (str) => {
 };
 
 const PokemonCard = ({ pokemon }) => {
-  //pokemon data state
-  const [pokemonData, setPokemonData] = useState("");
+  const pokemonName = capitalizeFirstLetter(pokemon.data.name);
 
-  useEffect(() => {
-    fetchPokemonData();
-  }, []);
+  let pokemonType = pokemon.data.types.map((el) => el.type.name).join(" ");
 
-  // fetch pokemon data
-  const fetchPokemonData = () => {
-    let URL_ENDPOINT = pokemon.url;
-    axios.get(URL_ENDPOINT).then((response) => {
-      setPokemonData(response.data);
-    });
-  };
-  console.log(pokemonData);
   //front state
   const [front, setFront] = useState(true);
   const clickHandler = () => {
@@ -32,17 +21,18 @@ const PokemonCard = ({ pokemon }) => {
 
   return (
     <Card onClick={clickHandler} className="card">
-      <Card.Title>{capitalizeFirstLetter(pokemon.name)}</Card.Title>
+      <Card.Title>{pokemonName}</Card.Title>
       <Card.Body>
         <Card.Img
           variant="top"
           src={
             front
-              ? pokemonData.sprites.front_default
-              : pokemonData.sprites.back_default
+              ? pokemon.data.sprites.front_default
+              : pokemon.data.sprites.back_default
           }
         />
-        <Card.Text>{pokemonData.weight} lbs</Card.Text>
+
+        <Card.Subtitle>{pokemonType}</Card.Subtitle>
       </Card.Body>
     </Card>
   );

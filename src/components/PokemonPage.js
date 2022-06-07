@@ -3,11 +3,13 @@ import axios from "axios";
 import Search from "./Search";
 import PokemonCollection from "./PokemonCollection";
 import { Container, Stack } from "react-bootstrap";
-const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit=151";
+const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit=386";
 
 const PokemonPage = () => {
   //set pokemon state
   const [pokemon, setPokemon] = useState([]);
+  //set pokemon urls
+  const [pokemonUrl, setPokemonUrl] = useState([]);
   //set search term
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -20,14 +22,22 @@ const PokemonPage = () => {
 
   const fetchPokemons = () => {
     axios.get(URL_ENDPOINT).then((response) => {
-      setPokemon(response.data.results);
+      let urlArr = response.data.results.map((el) => el.url);
+
+      axios.all(urlArr.map((l) => axios.get(l))).then(
+        axios.spread(function (...res) {
+          // all requests are now complete
+          setPokemon(res);
+        })
+      );
     });
   };
 
   //filter Pokemon by search
   const pokemonsToDisplay = pokemon.filter((poke) =>
-    poke.name.toLowerCase().includes(searchTerm.toLowerCase())
+    poke.data.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <Container>
       <Stack gap={4}>
