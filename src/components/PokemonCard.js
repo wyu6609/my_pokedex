@@ -21,7 +21,7 @@ const PokemonCard = ({ pokemon }) => {
 
   return (
     <Card onClick={clickHandler} className="card shadow">
-      <Card.Title>{pokemonName}</Card.Title>
+      <Card.Title className="py-2">{pokemonName}</Card.Title>
       <Card.Body>
         <Card.Img
           variant="top"
@@ -32,7 +32,9 @@ const PokemonCard = ({ pokemon }) => {
           }
         />
 
-        <Card.Subtitle className="text-muted">{pokemonType}</Card.Subtitle>
+        <Card.Subtitle className="text-muted">
+          {pokemonType.toUpperCase()}
+        </Card.Subtitle>
       </Card.Body>
     </Card>
   );

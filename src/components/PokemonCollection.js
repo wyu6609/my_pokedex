@@ -13,7 +13,7 @@ const PokemonCollection = ({ pokemon }) => {
   });
   return (
     <Container align="center">
-      <Row xs="auto">{cards}</Row>
+      <Row className="">{cards}</Row>
     </Container>
   );
 };

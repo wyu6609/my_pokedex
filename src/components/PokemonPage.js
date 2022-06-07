@@ -43,7 +43,7 @@ const PokemonPage = () => {
 
   return (
     <Container className="mx-auto">
-      <Stack gap={4}>
+      <Stack className="px-5" gap={4}>
         <Search searchTerm={searchTerm} onChangeSearch={setSearchTerm} />
         {loading ? (
           <PokemonCollection pokemon={pokemonsToDisplay} />
