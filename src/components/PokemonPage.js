@@ -24,8 +24,6 @@ const PokemonPage = () => {
     });
   };
 
-  console.log(pokemon);
-
   //filter Pokemon by search
   const pokemonsToDisplay = pokemon.filter((poke) =>
     poke.name.toLowerCase().includes(searchTerm.toLowerCase())
