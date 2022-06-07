@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "./Search";
 import PokemonCollection from "./PokemonCollection";
-import { Container, Stack } from "react-bootstrap";
+import { Container, Stack, Spinner } from "react-bootstrap";
+
 const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit=386";
 
 const PokemonPage = () => {
   //set pokemon state
   const [pokemon, setPokemon] = useState([]);
-  //set pokemon urls
-  const [pokemonUrl, setPokemonUrl] = useState([]);
+  //set loading
+
+  const [loading, setLoading] = useState(false);
   //set search term
   const [searchTerm, setSearchTerm] = useState("");
-
-  //fetch call on component load
-  useEffect(() => {
-    fetchPokemons();
-  }, []);
 
   //axios fetch
 
@@ -28,10 +25,16 @@ const PokemonPage = () => {
         axios.spread(function (...res) {
           // all requests are now complete
           setPokemon(res);
+          setLoading(true);
         })
       );
     });
   };
+
+  //fetch call on component load
+  useEffect(() => {
+    fetchPokemons();
+  }, []);
 
   //filter Pokemon by search
   const pokemonsToDisplay = pokemon.filter((poke) =>
@@ -42,7 +45,11 @@ const PokemonPage = () => {
     <Container>
       <Stack gap={4}>
         <Search searchTerm={searchTerm} onChangeSearch={setSearchTerm} />
-        <PokemonCollection pokemon={pokemonsToDisplay} center />
+        {loading ? (
+          <PokemonCollection pokemon={pokemonsToDisplay} className="mx-auto" />
+        ) : (
+          <Spinner animation="border" variant="danger" className="mx-auto" />
+        )}
       </Stack>
     </Container>
   );

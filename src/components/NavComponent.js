@@ -3,7 +3,7 @@ import React from "react";
 import { Navbar, Container } from "react-bootstrap";
 const NavComponent = () => {
   return (
-    <Navbar bg="danger" style={{ zIndex: 10 }}>
+    <Navbar bg="danger" className="shadow">
       <Container>
         <Navbar.Brand href="#home">
           <img

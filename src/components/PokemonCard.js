@@ -20,7 +20,7 @@ const PokemonCard = ({ pokemon }) => {
   };
 
   return (
-    <Card onClick={clickHandler} className="card">
+    <Card onClick={clickHandler} className="card shadow">
       <Card.Title>{pokemonName}</Card.Title>
       <Card.Body>
         <Card.Img
