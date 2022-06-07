@@ -42,13 +42,15 @@ const PokemonPage = () => {
   );
 
   return (
-    <Container>
+    <Container className="mx-auto">
       <Stack gap={4}>
         <Search searchTerm={searchTerm} onChangeSearch={setSearchTerm} />
         {loading ? (
-          <PokemonCollection pokemon={pokemonsToDisplay} className="mx-auto" />
+          <PokemonCollection pokemon={pokemonsToDisplay} />
         ) : (
-          <Spinner animation="border" variant="danger" className="mx-auto" />
+          <Spinner animation="border" variant="danger" className="mx-auto ">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         )}
       </Stack>
     </Container>
