@@ -32,7 +32,7 @@ const PokemonCard = ({ pokemon }) => {
           }
         />
 
-        <Card.Subtitle>{pokemonType}</Card.Subtitle>
+        <Card.Subtitle className="text-muted">{pokemonType}</Card.Subtitle>
       </Card.Body>
     </Card>
   );
