@@ -15,12 +15,6 @@ const PokemonPage = () => {
   //set search term
   const [searchTerm, setSearchTerm] = useState("");
 
-  const themeSound = () => {
-    let themeAudio = new Audio("/sounds/pokemon_center.mp3");
-    themeAudio.loop = true;
-    themeAudio.play();
-  };
-
   //axios fetch
 
   const fetchPokemons = () => {
@@ -39,7 +33,6 @@ const PokemonPage = () => {
 
   //fetch call on component load
   useEffect(() => {
-    themeSound();
     fetchPokemons();
   }, []);
 

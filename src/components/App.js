@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import NavComponent from "./NavComponent";
 import PokemonPage from "./PokemonPage";

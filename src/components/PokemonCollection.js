@@ -1,13 +1,13 @@
 import React from "react";
 import PokemonCard from "./PokemonCard";
 import { Container, Row, Col } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
 
 const PokemonCollection = ({ pokemon }) => {
-  console.log(pokemon);
   const cards = pokemon.map((poke) => {
     return (
-      <Col>
-        <PokemonCard key={poke.data.id} pokemon={poke} />
+      <Col key={uuidv4()}>
+        <PokemonCard pokemon={poke} />
       </Col>
     );
   });
