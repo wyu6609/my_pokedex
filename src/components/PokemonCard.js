@@ -95,7 +95,7 @@ const PokemonCard = ({ pokemon }) => {
       <Card.Title align="center">{pokemonName}</Card.Title>
       <Card.Body>
         <Card.Img
-          className="bg-light  rounded-circle"
+          className="bg-light  rounded-circle "
           onClick={clickHandler}
           variant="top"
           src={
@@ -105,10 +105,12 @@ const PokemonCard = ({ pokemon }) => {
           }
         />
 
-        <Card.Subtitle align="center" className="text-muted py-1">
+        <Card.Subtitle align="center" className="text-muted pt-4">
           {pokemon.data.weight} lbs
         </Card.Subtitle>
-        <Card.Subtitle align="center">{pokeType.toUpperCase()}</Card.Subtitle>
+        <Card.Subtitle align="center" className="pt-2">
+          {pokeType.toUpperCase()}
+        </Card.Subtitle>
       </Card.Body>
     </Card>
   );
