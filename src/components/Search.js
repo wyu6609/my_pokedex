@@ -42,7 +42,11 @@ const Search = ({ searchTerm, onChangeSearch, setStatus, status }) => {
         {capitalizeFirstLetter(status) + " "}
       </Dropdown.Toggle>
 
-      <Dropdown.Menu className="bg-danger opacity-75" onClick={statusHandler}>
+      <Dropdown.Menu
+        className="bg-danger opacity-75"
+        textAlign="center"
+        onClick={statusHandler}
+      >
         <Dropdown.Item className="text-white" value="all">
           All
         </Dropdown.Item>

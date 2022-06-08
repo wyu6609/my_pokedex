@@ -4,7 +4,7 @@ import Search from "./Search";
 import PokemonCollection from "./PokemonCollection";
 import { Container, Stack, Spinner } from "react-bootstrap";
 
-const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit=386";
+const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit= 913";
 
 const PokemonPage = () => {
   //set pokemon state
