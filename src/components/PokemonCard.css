@@ -58,3 +58,7 @@
 .water {
   color: #2c97ff;
 }
+
+.card:hover {
+  box-shadow: 0 0 10px #ae3047 !important;
+}
