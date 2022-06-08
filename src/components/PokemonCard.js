@@ -21,7 +21,7 @@ const PokemonCard = ({ pokemon }) => {
 
   return (
     <Card onClick={clickHandler} className="card shadow">
-      <Card.Title className="py-2">{pokemonName}</Card.Title>
+      <Card.Title className="pt-3">{pokemonName}</Card.Title>
       <Card.Body>
         <Card.Img
           variant="top"
@@ -32,9 +32,10 @@ const PokemonCard = ({ pokemon }) => {
           }
         />
 
-        <Card.Subtitle className="text-muted">
-          {pokemonType.toUpperCase()}
+        <Card.Subtitle className="text-muted py-1">
+          {pokemon.data.weight} lbs
         </Card.Subtitle>
+        <Card.Subtitle>{pokemonType.toUpperCase()}</Card.Subtitle>
       </Card.Body>
     </Card>
   );
