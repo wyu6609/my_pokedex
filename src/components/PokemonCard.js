@@ -13,7 +13,7 @@ const PokemonCard = ({ pokemon }) => {
   const [pokeType, setPokeType] = useState(pokemon.data.types[0].type.name);
   //set pokemon type color state
   const [typeColor, setTypeColor] = useState("");
-
+  console.log(pokemon);
   // set color type
   useEffect(() => {
     switch (pokeType) {
@@ -91,7 +91,8 @@ const PokemonCard = ({ pokemon }) => {
 
   return (
     <Card className={`card shadow  ${typeColor}`}>
-      <Card.Title className="pt-3">{pokemonName}</Card.Title>
+      <span className="pokemon-id"># {pokemon.data.id}</span>
+      <Card.Title align="center">{pokemonName}</Card.Title>
       <Card.Body>
         <Card.Img
           className="bg-light  rounded-circle"
@@ -104,10 +105,10 @@ const PokemonCard = ({ pokemon }) => {
           }
         />
 
-        <Card.Subtitle className="text-muted py-1">
+        <Card.Subtitle align="center" className="text-muted py-1">
           {pokemon.data.weight} lbs
         </Card.Subtitle>
-        <Card.Subtitle>{pokeType.toUpperCase()}</Card.Subtitle>
+        <Card.Subtitle align="center">{pokeType.toUpperCase()}</Card.Subtitle>
       </Card.Body>
     </Card>
   );

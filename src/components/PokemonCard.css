@@ -1,6 +1,13 @@
 .card {
   margin-bottom: 10px;
 }
+
+.pokemon-id {
+  padding-left: 4px;
+  padding-top: 3px;
+  font-size: 10px;
+}
+
 /* pokemon types by color */
 .bug {
   color: #9dab18;

@@ -33,15 +33,14 @@ const Search = ({ searchTerm, onChangeSearch, setStatus, status }) => {
         value={searchTerm}
         onChange={handleChange}
       />
-      <Button className="filter-btn shadow-none" variant="danger">
-        Type: {capitalizeFirstLetter(status)}
-      </Button>
+
       <Dropdown.Toggle
-        split
         className="text-white"
         variant="danger"
         id="dropdown-split-basic"
-      />
+      >
+        {capitalizeFirstLetter(status) + " "}
+      </Dropdown.Toggle>
 
       <Dropdown.Menu className="bg-danger opacity-75" onClick={statusHandler}>
         <Dropdown.Item className="text-white" value="all">
