@@ -15,6 +15,111 @@ const PokemonPage = () => {
   //set search term
   const [searchTerm, setSearchTerm] = useState("");
 
+  // set filter status
+  const [status, setStatus] = useState("all");
+
+  //pokemon type filter state
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
+
+  //filter pokemon type handler
+  const filterHandler = () => {
+    switch (status) {
+      case "bug":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "bug")
+        );
+        break;
+      case "dark":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "dark")
+        );
+        break;
+      case "dragon":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "dragon")
+        );
+        break;
+      case "electric":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "electric")
+        );
+        break;
+      case "fairy":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "fairy")
+        );
+        break;
+      case "fighting":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "fighting")
+        );
+        break;
+      case "fire":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "fire")
+        );
+        break;
+      case "flying":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "flying")
+        );
+        break;
+      case "ghost":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "ghost")
+        );
+        break;
+      case "grass":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "grass")
+        );
+        break;
+      case "ground":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "ground")
+        );
+        break;
+      case "ice":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "ice")
+        );
+        break;
+      case "normal":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "normal")
+        );
+        break;
+      case "poison":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "poison")
+        );
+        break;
+      case "psychic":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "psychic")
+        );
+        break;
+      case "rock":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "rock")
+        );
+        break;
+      case "steel":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "psychic")
+        );
+        break;
+      case "water":
+        setFilteredPokemon(
+          pokemon.filter((poke) => poke.data.types[0].type.name === "water")
+        );
+        break;
+      default:
+        setFilteredPokemon(pokemon);
+        break;
+    }
+  };
+
   //axios fetch
 
   const fetchPokemons = () => {
@@ -36,15 +141,26 @@ const PokemonPage = () => {
     fetchPokemons();
   }, []);
 
+  // pokemon type component load
+
+  useEffect(() => {
+    filterHandler();
+  }, [pokemon, status]);
+
   //filter Pokemon by search
-  const pokemonsToDisplay = pokemon.filter((poke) =>
+  const pokemonsToDisplay = filteredPokemon.filter((poke) =>
     poke.data.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <Container className="mx-auto">
       <Stack className="px-5" gap={4}>
-        <Search searchTerm={searchTerm} onChangeSearch={setSearchTerm} />
+        <Search
+          searchTerm={searchTerm}
+          onChangeSearch={setSearchTerm}
+          setStatus={setStatus}
+          status={status}
+        />
         {loading ? (
           <PokemonCollection pokemon={pokemonsToDisplay} />
         ) : (

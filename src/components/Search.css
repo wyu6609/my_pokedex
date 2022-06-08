@@ -14,3 +14,17 @@
     width: 50% !important;
   }
 }
+.dropdown-menu > .dropdown-item:focus {
+  background-color: red;
+}
+.dropdown-menu > .dropdown-item:hover {
+  background-color: #b02a37;
+}
+
+.filter-btn:hover,
+.filter-btn:focus {
+  background-color: #dc3545 !important;
+
+  border: none;
+  cursor: initial !important;
+}
