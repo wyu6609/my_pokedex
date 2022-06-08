@@ -1,3 +1,14 @@
 .App {
   text-align: center;
 }
+
+/* ::-webkit-scrollbar {
+  width: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: url("https://www.pngfind.com/pngs/m/255-2554477_pokeball-small-pokeball-cross-stitch-hd-png-download.png");
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+} */
