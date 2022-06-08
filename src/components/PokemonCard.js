@@ -13,7 +13,7 @@ const PokemonCard = ({ pokemon }) => {
   const [pokeType, setPokeType] = useState(pokemon.data.types[0].type.name);
   //set pokemon type color state
   const [typeColor, setTypeColor] = useState("");
-  console.log(pokemon);
+
   // set color type
   useEffect(() => {
     switch (pokeType) {
@@ -86,7 +86,6 @@ const PokemonCard = ({ pokemon }) => {
   const [front, setFront] = useState(true);
   const clickHandler = () => {
     setFront(!front);
-    console.log(front);
   };
 
   return (
