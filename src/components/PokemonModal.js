@@ -25,9 +25,9 @@ const PokemonModal = (props) => {
   useEffect(() => {
     if (props.modaldata) {
       let URL = props.modaldata.data.species.url;
+      console.log(URL);
+      console.log(props.modaldata.data.id);
       fetchDescription(URL);
-      // setPokeType1(props.modaldata.data.types[0].type.name);
-      // setPokeType2(props.modaldata.data.types[1].type.name);
     } else {
       console.log("null");
     }
@@ -36,7 +36,10 @@ const PokemonModal = (props) => {
   //fetch pokemon description
   const fetchDescription = (URL_ENDPOINT) => {
     axios.get(URL_ENDPOINT).then((response) => {
-      setPokemonDescription(response.data.flavor_text_entries[0].flavor_text);
+      setPokemonDescription(
+        response.data.flavor_text_entries[0].flavor_text.replace("\f", " ")
+      );
+
       setLoading(true);
     });
   };

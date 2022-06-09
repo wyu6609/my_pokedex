@@ -1,5 +1,6 @@
 .card {
   margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.6);
 }
 .info-svg:hover,
 .info-svg:focus {
