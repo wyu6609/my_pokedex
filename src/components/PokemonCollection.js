@@ -5,12 +5,20 @@ import PokemonModal from "./PokemonModal";
 import { v4 as uuidv4 } from "uuid";
 
 const PokemonCollection = ({ pokemon }) => {
+  //modal pokemon data
+  const [modalData, setModalData] = useState("");
   // pokemon details modal state
   const [modalShow, setModalShow] = useState(false);
+
+  // pokemon Description URL
+
   const cards = pokemon.map((poke) => {
     return (
       <Col
-        onClick={() => setModalShow(true)}
+        onClick={() => {
+          setModalData(poke);
+          setModalShow(true);
+        }}
         key={uuidv4()}
         xs={12}
         md={3}
@@ -22,7 +30,11 @@ const PokemonCollection = ({ pokemon }) => {
   });
   return (
     <>
-      <PokemonModal show={modalShow} onHide={() => setModalShow(false)} />
+      <PokemonModal
+        show={modalShow}
+        modaldata={modalData}
+        onHide={() => setModalShow(false)}
+      />
       <Container>
         <Row>{cards}</Row>
       </Container>
