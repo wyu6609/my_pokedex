@@ -21,7 +21,7 @@
   cursor: default !important;
 }
 
-/* pokemon types by color */
+/* pokemon types by background color */
 .bug {
   background-color: #9dab18 !important;
 }
@@ -76,4 +76,61 @@
 }
 .water {
   background-color: #2c97ff !important;
+}
+
+/* pokemon types by text color */
+.bug-text {
+  color: #9dab18 !important;
+}
+.dark-text {
+  color: #3c2d22 !important;
+}
+.dragon-text {
+  color: #6f59dd !important;
+}
+.electric-text {
+  color: #fbc116 !important;
+}
+.fairy-text {
+  color: #f9adfb !important;
+}
+.fighting-text {
+  color: #7b250c !important;
+}
+.fire-text {
+  color: #f63807 !important;
+}
+.flying-text {
+  color: #98a8f4 !important;
+}
+.ghost-text {
+  color: #5d5eb0 !important;
+}
+
+.grass-text {
+  color: #73c233 !important;
+}
+.ground-text {
+  color: #d3b055 !important;
+}
+.ice-text {
+  color: #a7e8fd !important;
+}
+.normal-text {
+  color: #c7bfb8 !important;
+}
+.poison-text {
+  color: #924193 !important;
+}
+.psychic-text {
+  color: #ed447e !important;
+}
+.rock-text {
+  color: #b99d4d !important;
+}
+.steel-text {
+  color: #aeaebc !important;
+}
+.water-text {
+  color: #2c97ff !important;
 }

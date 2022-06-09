@@ -21,15 +21,13 @@ const PokemonModal = (props) => {
   const [loading, setLoading] = useState(false);
   //set pokemon Description
   const [pokemonDescription, setPokemonDescription] = useState("");
-
+  // set pokemon habitat
+  const [pokemonHabitat, setPokemonHabitat] = useState("");
   useEffect(() => {
     if (props.modaldata) {
       let URL = props.modaldata.data.species.url;
       console.log(URL);
-      console.log(props.modaldata.data.id);
       fetchDescription(URL);
-    } else {
-      console.log("null");
     }
   }, [props.modaldata]);
 
@@ -40,79 +38,77 @@ const PokemonModal = (props) => {
         response.data.flavor_text_entries[0].flavor_text.replace("\f", " ")
       );
 
+      setPokemonHabitat(response.data.habitat.name);
+
       setLoading(true);
     });
   };
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header className="text-center" closeButton>
-        <Modal.Title align="start" id="contained-modal-title-vcenter">
-          {props.modaldata ? (
-            <Container className="pokemon-modal-header">
-              <span className="pokemon-modal-id">{`id ${props.modaldata.data.id} `}</span>
-              <span className="text-uppercase pokemon-modal-name">
-                {capitalizeFirstLetter(props.modaldata.data.name)}
-              </span>
-            </Container>
-          ) : (
-            ""
-          )}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Container>
-          <Row>
-            <Col xs={12}>
-              <Container>
-                {props.modaldata ? (
-                  <Row>
-                    <Col>
-                      <img
-                        width="100"
-                        className="bg-light  rounded-circle"
-                        src={props.modaldata.data.sprites.front_default}
-                      />
-                    </Col>
-                    <Col>
-                      <img
-                        className="bg-light  rounded-circle"
-                        src={props.modaldata.data.sprites.back_default}
-                      />
-                    </Col>
-                  </Row>
-                ) : (
-                  ""
-                )}
+    <>
+      {props.modaldata ? (
+        <Modal
+          {...props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className={`${props.modaldata.data.types[0].type.name}-text`}
+        >
+          <Modal.Header className="text-center" closeButton>
+            <Modal.Title align="start" id="contained-modal-title-vcenter">
+              <Container className="pokemon-modal-header">
+                <span className="pokemon-modal-id">{`id ${props.modaldata.data.id} `}</span>
+                <span className="text-uppercase pokemon-modal-name">
+                  {props.modaldata.data.name}
+                </span>
               </Container>
-            </Col>
-            <Col xs={12}>
-              {loading ? (
-                <>
-                  <h4 className="text-lowercase font-italic">Description</h4>
-                  <p>{props.modaldata ? pokemonDescription : ""}</p>
-                </>
-              ) : (
-                <Spinner
-                  animation="border"
-                  variant="danger"
-                  className="mx-auto "
-                >
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </Modal.Body>
-      <Modal.Footer className="mx-auto ">
-        {props.modaldata
-          ? props.modaldata.data.types.map((el) => {
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Container>
+              <Row>
+                <Col xs={12}>
+                  <Container>
+                    <Row>
+                      <Col>
+                        <img
+                          width="100"
+                          className="bg-light  rounded-circle"
+                          src={props.modaldata.data.sprites.front_default}
+                        />
+                      </Col>
+                      <Col>
+                        <img
+                          className="bg-light  rounded-circle"
+                          src={props.modaldata.data.sprites.back_default}
+                        />
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+                <Col xs={12}>
+                  {loading ? (
+                    <>
+                      <h5 className="text-capitalize text-center pt-4 font-italic ">
+                        Habitat: {pokemonHabitat}
+                      </h5>
+                      <p>{props.modaldata ? pokemonDescription : ""}</p>
+                    </>
+                  ) : (
+                    <Spinner
+                      animation="border"
+                      variant="danger"
+                      className="mx-auto "
+                    >
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  )}
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer className="mx-auto ">
+            {props.modaldata.data.types.map((el) => {
               return (
                 <Button
                   key={uuidv4()}
@@ -122,10 +118,13 @@ const PokemonModal = (props) => {
                   {el.type.name}
                 </Button>
               );
-            })
-          : ""}
-      </Modal.Footer>
-    </Modal>
+            })}
+          </Modal.Footer>
+        </Modal>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
