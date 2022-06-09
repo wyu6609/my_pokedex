@@ -9,7 +9,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import "./PokemonModal.css";
-
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 // function
 const capitalizeFirstLetter = (str) => {
@@ -22,16 +22,12 @@ const PokemonModal = (props) => {
   //set pokemon Description
   const [pokemonDescription, setPokemonDescription] = useState("");
 
-  //set pokemon types
-  const [pokeType1, setPokeType1] = useState("");
-  const [pokeType2, setPokeType2] = useState("");
-
   useEffect(() => {
     if (props.modaldata) {
       let URL = props.modaldata.data.species.url;
       fetchDescription(URL);
-      setPokeType1(props.modaldata.data.types[0].type.name);
-      setPokeType2(props.modaldata.data.types[1].type.name);
+      // setPokeType1(props.modaldata.data.types[0].type.name);
+      // setPokeType2(props.modaldata.data.types[1].type.name);
     } else {
       console.log("null");
     }
@@ -112,12 +108,19 @@ const PokemonModal = (props) => {
         </Container>
       </Modal.Body>
       <Modal.Footer className="mx-auto ">
-        <Button size="sm" className={`type-btn text-uppercase  ${pokeType1}`}>
-          {pokeType1}
-        </Button>
-        <Button size="sm" className={`type-btn ${pokeType2} text-uppercase  `}>
-          {pokeType2}
-        </Button>
+        {props.modaldata
+          ? props.modaldata.data.types.map((el) => {
+              return (
+                <Button
+                  key={uuidv4()}
+                  size="sm"
+                  className={`type-btn text-uppercase  ${el.type.name}`}
+                >
+                  {el.type.name}
+                </Button>
+              );
+            })
+          : ""}
       </Modal.Footer>
     </Modal>
   );
