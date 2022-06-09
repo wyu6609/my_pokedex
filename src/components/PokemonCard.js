@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button, Container } from "react-bootstrap";
 import axios from "axios";
 import "./PokemonCard.css";
 
@@ -8,7 +8,7 @@ const capitalizeFirstLetter = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const PokemonCard = ({ pokemon }) => {
+const PokemonCard = ({ pokemon, setModalShow }) => {
   //set pokemon type state
   const [pokeType, setPokeType] = useState(pokemon.data.types[0].type.name);
   //set pokemon type color state
@@ -90,8 +90,32 @@ const PokemonCard = ({ pokemon }) => {
 
   return (
     <Card className={`card shadow  ${typeColor}`}>
-      <span className="pokemon-id"># {pokemon.data.id}</span>
-      <Card.Title align="center">{pokemonName}</Card.Title>
+      <Container className="d-flex justify-content-between pt-2">
+        <span className="pokemon-id"># {pokemon.data.id}</span>
+        <Card.Title align="center">{pokemonName} </Card.Title>
+        <span>
+          <svg
+            className="svg"
+            onClick={() => {
+              setModalShow(true);
+            }}
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            version="1"
+            viewBox="0 0 48 48"
+            enable-background="new 0 0 48 48"
+            height="1.2em"
+            width="1.2em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle fill="#2196F3" cx="24" cy="24" r="21"></circle>
+            <rect x="22" y="22" fill="#fff" width="4" height="11"></rect>
+            <circle fill="#fff" cx="24" cy="16.5" r="2.5"></circle>
+          </svg>
+        </span>
+      </Container>
+
       <Card.Body>
         <Card.Img
           className="bg-light  rounded-circle "

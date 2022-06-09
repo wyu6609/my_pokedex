@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Container, Col, Row, Modal, Button } from "react-bootstrap";
 import axios from "axios";
 // function
 const capitalizeFirstLetter = (str) => {
@@ -7,13 +7,25 @@ const capitalizeFirstLetter = (str) => {
 };
 
 const PokemonModal = (props) => {
+  //set loading
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (props.modaldata) {
-      console.log(props.modaldata.data.species.url);
+      let URL = props.modaldata.data.species.url;
+      fetchDescription(URL);
     } else {
       console.log("null");
     }
   }, [props.modaldata]);
+
+  //fetch pokemon description
+  const fetchDescription = (URL_ENDPOINT) => {
+    axios.get(URL_ENDPOINT).then((response) => {
+      console.log(response.data);
+      setLoading(true);
+    });
+  };
 
   return (
     <Modal
@@ -29,6 +41,7 @@ const PokemonModal = (props) => {
             ? capitalizeFirstLetter(props.modaldata.data.name)
             : ""}
         </Modal.Title>
+        <Container></Container>
       </Modal.Header>
       <Modal.Body>
         <h4>Description</h4>

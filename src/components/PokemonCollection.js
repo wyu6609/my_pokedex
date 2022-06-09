@@ -17,14 +17,13 @@ const PokemonCollection = ({ pokemon }) => {
       <Col
         onClick={() => {
           setModalData(poke);
-          setModalShow(true);
         }}
         key={uuidv4()}
         xs={12}
         md={3}
         lg={2}
       >
-        <PokemonCard pokemon={poke} />
+        <PokemonCard setModalShow={setModalShow} pokemon={poke} />
       </Col>
     );
   });
