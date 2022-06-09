@@ -35,7 +35,7 @@ const PokemonModal = (props) => {
   const fetchDescription = (URL_ENDPOINT) => {
     axios.get(URL_ENDPOINT).then((response) => {
       setPokemonDescription(
-        response.data.flavor_text_entries[0].flavor_text.replace("\f", " ")
+        response.data.flavor_text_entries[1].flavor_text.replace("\f", " ")
       );
 
       setPokemonHabitat(response.data.habitat.name);
