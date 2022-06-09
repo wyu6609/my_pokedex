@@ -7,7 +7,7 @@ Utilizes Axios
 
 ## Desktop demo
 
-<p align="center"><img src = "/demo/pokemon_desktop_demo.gif"/></p>
+<p align="center"><img src = "/demo/pokemon_demo.gif"/></p>
 
 ## Mobile demo
 
