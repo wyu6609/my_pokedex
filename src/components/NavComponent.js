@@ -3,8 +3,8 @@ import React from "react";
 import { Navbar, Container } from "react-bootstrap";
 const NavComponent = () => {
   return (
-    <Navbar bg="danger" className="shadow">
-      <Container>
+    <Navbar bg="danger" className="shadow ">
+      <Container className="d-flex justify-content-center">
         <Navbar.Brand>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"

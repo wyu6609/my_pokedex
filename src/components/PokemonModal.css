@@ -1,12 +1,24 @@
-.card {
-  margin-bottom: 10px;
-}
-.info-svg:hover,
-.info-svg:focus {
-  transform: translate3D(0, -2px, 0) scale(1.1);
-}
-.pokemon-id {
+.pokemon-modal-id {
   font-size: 10px;
+  padding: 5px;
+  font-weight: bold;
+  color: #d3d3d3;
+}
+.pokemon-modal-name {
+  padding: 3px;
+}
+.pokemon-modal-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.type-btn,
+.type-btn:hover,
+.type-btn:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: default !important;
 }
 
 /* pokemon types by color */
@@ -64,8 +76,4 @@
 }
 .water {
   background-color: #2c97ff !important;
-}
-
-.card:hover {
-  box-shadow: 0 0 10px #ae3047 !important;
 }

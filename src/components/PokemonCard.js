@@ -3,11 +3,6 @@ import { Card, Button, Container } from "react-bootstrap";
 import axios from "axios";
 import "./PokemonCard.css";
 
-// function
-const capitalizeFirstLetter = (str) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 const PokemonCard = ({ pokemon, setModalShow }) => {
   //set pokemon type state
   const [pokeType, setPokeType] = useState(pokemon.data.types[0].type.name);
@@ -77,9 +72,6 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
     }
   }, [pokeType]);
 
-  //pokemon name capitalize first letter
-  const pokemonName = capitalizeFirstLetter(pokemon.data.name);
-
   let pokemonType = pokemon.data.types.map((el) => el.type.name).join(" ");
 
   //front state
@@ -89,36 +81,37 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
   };
 
   return (
-    <Card className={`card shadow  ${typeColor}`}>
+    <Card className={`card shadow  ${typeColor} text-white `}>
       <Container className="d-flex justify-content-between pt-2">
         <span className="pokemon-id"># {pokemon.data.id}</span>
-        <Card.Title align="center">{pokemonName} </Card.Title>
         <span>
           <svg
-            className="svg"
+            className="info-svg"
             onClick={() => {
               setModalShow(true);
             }}
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
-            version="1"
-            viewBox="0 0 48 48"
-            enable-background="new 0 0 48 48"
-            height="1.2em"
-            width="1.2em"
+            strokeWidth="0"
+            viewBox="0 0 24 24"
+            height="1em"
+            width="1em"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle fill="#2196F3" cx="24" cy="24" r="21"></circle>
-            <rect x="22" y="22" fill="#fff" width="4" height="11"></rect>
-            <circle fill="#fff" cx="24" cy="16.5" r="2.5"></circle>
+            <g>
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"></path>
+            </g>
           </svg>
         </span>
       </Container>
+      <Card.Title className="text-capitalize" align="center">
+        {pokemon.data.name}{" "}
+      </Card.Title>
 
       <Card.Body>
         <Card.Img
-          className="bg-light  rounded-circle "
+          className="bg-grey rounded-circle "
           onClick={clickHandler}
           variant="top"
           src={
@@ -128,11 +121,11 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
           }
         />
 
-        <Card.Subtitle align="center" className="text-muted pt-4">
+        <Card.Subtitle align="center" className=" pt-4">
           {pokemon.data.weight} lbs
         </Card.Subtitle>
-        <Card.Subtitle align="center" className="pt-2">
-          {pokeType.toUpperCase()}
+        <Card.Subtitle align="center" className="pt-2 text-uppercase">
+          {pokeType}
         </Card.Subtitle>
       </Card.Body>
     </Card>
