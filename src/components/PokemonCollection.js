@@ -9,9 +9,11 @@ const PokemonCollection = ({ pokemon }) => {
   const [modalData, setModalData] = useState("");
   // pokemon details modal state
   const [modalShow, setModalShow] = useState(false);
+  //pokemon set shiny
+  const [shiny, setShiny] = useState(false);
 
   // pokemon Description URL
-
+  console.log(shiny);
   const cards = pokemon.map((poke) => {
     return (
       <Col
@@ -30,9 +32,14 @@ const PokemonCollection = ({ pokemon }) => {
   return (
     <>
       <PokemonModal
+        shiny={shiny}
+        setShiny={setShiny}
         show={modalShow}
         modaldata={modalData}
-        onHide={() => setModalShow(false)}
+        onHide={() => {
+          setShiny(false);
+          setModalShow(false);
+        }}
       />
       <Container>
         <Row>{cards}</Row>

@@ -25,9 +25,9 @@ const PokemonModal = (props) => {
   const [pokemonHabitat, setPokemonHabitat] = useState("");
 
   //shiny state
-  const [shiny, setShiny] = useState(false);
+
   const clickHandler = () => {
-    setShiny(!shiny);
+    props.setShiny(!props.shiny);
   };
 
   useEffect(() => {
@@ -84,9 +84,9 @@ const PokemonModal = (props) => {
                           width="100"
                           className="bg-light  rounded-circle "
                           src={
-                            shiny
-                              ? props.modaldata.data.sprites.front_default
-                              : props.modaldata.data.sprites.front_shiny
+                            props.shiny
+                              ? props.modaldata.data.sprites.front_shiny
+                              : props.modaldata.data.sprites.front_default
                           }
                         />
                       </Col>
@@ -94,9 +94,9 @@ const PokemonModal = (props) => {
                         <img
                           className="bg-light  rounded-circle"
                           src={
-                            shiny
-                              ? props.modaldata.data.sprites.back_default
-                              : props.modaldata.data.sprites.back_shiny
+                            props.shiny
+                              ? props.modaldata.data.sprites.back_shiny
+                              : props.modaldata.data.sprites.back_default
                           }
                         />
                       </Col>
@@ -112,12 +112,12 @@ const PokemonModal = (props) => {
                       </h5>
                       <p>{props.modaldata ? pokemonDescription : ""}</p>
                       <Button
-                        variant={shiny ? "warning" : "secondary"}
+                        variant={props.shiny ? "secondary" : "warning"}
                         className="text-white"
                         onClick={clickHandler}
                         size="sm"
                       >
-                        {shiny ? "View Shiny" : "View Normal"}
+                        {props.shiny ? "View Normal" : "View Shiny"}
                       </Button>
                     </>
                   ) : (
