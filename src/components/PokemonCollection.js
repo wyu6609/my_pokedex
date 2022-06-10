@@ -12,8 +12,6 @@ const PokemonCollection = ({ pokemon }) => {
   //pokemon set shiny
   const [shiny, setShiny] = useState(false);
 
-  // pokemon Description URL
-  console.log(shiny);
   const cards = pokemon.map((poke) => {
     return (
       <Col

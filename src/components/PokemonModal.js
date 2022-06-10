@@ -41,11 +41,25 @@ const PokemonModal = (props) => {
   //fetch pokemon description
   const fetchDescription = (URL_ENDPOINT) => {
     axios.get(URL_ENDPOINT).then((response) => {
-      setPokemonDescription(
-        response.data.flavor_text_entries[1].flavor_text.replace("\f", " ")
+      let englishDescriptionObj = response.data.flavor_text_entries.find(
+        function (obj) {
+          return obj.language.name == "en";
+        }
       );
 
-      setPokemonHabitat(response.data.habitat.name);
+      let englishDescription = englishDescriptionObj.flavor_text.replace(
+        "\f",
+        " "
+      );
+
+      setPokemonDescription(englishDescription);
+
+      let habitat = response.data.habitat
+        ? response.data.habitat.name
+        : "UNKNOWN";
+      setPokemonHabitat(
+        response.data.habitat ? response.data.habitat.name : "UNKNOWN"
+      );
 
       setLoading(true);
     });
@@ -65,43 +79,43 @@ const PokemonModal = (props) => {
             className={`${props.modaldata.data.types[0].type.name} text-white `}
           >
             <Modal.Title align="start" id="contained-modal-title-vcenter">
-              <Container className="pokemon-modal-header">
-                <span className="pokemon-modal-id">{`id ${props.modaldata.data.id} `}</span>
-                <span className="text-uppercase pokemon-modal-name">
-                  {props.modaldata.data.name}
-                </span>
-              </Container>
+              <span className="pokemon-modal-id">{`id ${props.modaldata.data.id} `}</span>
+              <span className="text-uppercase pokemon-modal-name">
+                {props.modaldata.data.name}
+              </span>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Container>
               <Row>
                 <Col xs={6} s={6} md={6}>
-                  <Container>
-                    <Row>
-                      <Col className="pb-1">
-                        <img
-                          width="100"
-                          className="bg-light  rounded-circle "
-                          src={
-                            props.shiny
-                              ? props.modaldata.data.sprites.front_shiny
-                              : props.modaldata.data.sprites.front_default
-                          }
-                        />
-                      </Col>
-                      <Col>
-                        <img
-                          className="bg-light  rounded-circle"
-                          src={
-                            props.shiny
-                              ? props.modaldata.data.sprites.back_shiny
-                              : props.modaldata.data.sprites.back_default
-                          }
-                        />
-                      </Col>
-                    </Row>
-                  </Container>
+                  <Row sx={6}>
+                    <Col>
+                      <img
+                        src={
+                          props.shiny
+                            ? props.modaldata.data.sprites.front_shiny
+                            : props.modaldata.data.sprites.front_default
+                        }
+                      />
+                      <img
+                        width="100"
+                        src={
+                          props.shiny
+                            ? props.modaldata.data.sprites.back_shiny
+                            : props.modaldata.data.sprites.back_default
+                        }
+                      />
+                      <Button
+                        variant={props.shiny ? "secondary" : "warning"}
+                        className="text-white btn-xs mt-3 "
+                        onClick={clickHandler}
+                        size="sm"
+                      >
+                        {props.shiny ? "View Normal" : "View Shiny"}
+                      </Button>
+                    </Col>
+                  </Row>
                 </Col>
 
                 <Col xs={6} s={6} md={6} lg>
@@ -110,15 +124,9 @@ const PokemonModal = (props) => {
                       <h5 className="text-capitalize text-md-start text-center pt-4 font-italic ">
                         Habitat: {pokemonHabitat}
                       </h5>
-                      <p>{pokemonDescription}</p>
-                      <Button
-                        variant={props.shiny ? "secondary" : "warning"}
-                        className="text-white"
-                        onClick={clickHandler}
-                        size="sm"
-                      >
-                        {props.shiny ? "View Normal" : "View Shiny"}
-                      </Button>
+                      <p>
+                        <small>{pokemonDescription}</small>
+                      </p>
                     </>
                   ) : (
                     <Spinner

@@ -5,6 +5,7 @@
 .info-svg:hover,
 .info-svg:focus {
   transform: translate3D(0, -2px, 0) scale(1.1);
+  background-color: grey;
 }
 .pokemon-id {
   font-size: 10px;
