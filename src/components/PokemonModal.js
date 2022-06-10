@@ -112,12 +112,12 @@ const PokemonModal = (props) => {
                       </h5>
                       <p>{props.modaldata ? pokemonDescription : ""}</p>
                       <Button
-                        variant="warning"
+                        variant={shiny ? "warning" : "secondary"}
                         className="text-white"
                         onClick={clickHandler}
                         size="sm"
                       >
-                        Toggle Shiny
+                        {shiny ? "View Shiny" : "View Normal"}
                       </Button>
                     </>
                   ) : (
@@ -133,12 +133,12 @@ const PokemonModal = (props) => {
               </Row>
             </Container>
           </Modal.Body>
-          <Modal.Footer className="mx-auto border-0">
+          <Modal.Footer className=" border-0">
             {props.modaldata.data.types.map((el) => {
               return (
                 <Button
                   key={uuidv4()}
-                  className={`type-btn text-uppercase  ${el.type.name}`}
+                  className={`type-btn btn btn-xs text-uppercase  ${el.type.name}`}
                 >
                   {el.type.name}
                 </Button>
