@@ -78,8 +78,8 @@ const PokemonModal = (props) => {
           <Modal.Header
             className={`${props.modaldata.data.types[0].type.name} text-white `}
           >
+            <Badge className="pokemon-modal-id bg-secondary p-2">{`id ${props.modaldata.data.id} `}</Badge>
             <Modal.Title align="start" id="contained-modal-title-vcenter">
-              <span className="pokemon-modal-id">{`id ${props.modaldata.data.id} `}</span>
               <span className="text-uppercase pokemon-modal-name">
                 {props.modaldata.data.name}
               </span>
