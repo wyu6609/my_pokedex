@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "./Search";
 import PokemonCollection from "./PokemonCollection";
-import { Container, Stack, Spinner, Button } from "react-bootstrap";
+import { Container, Stack, Spinner } from "react-bootstrap";
 
 const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit= 913";
 
