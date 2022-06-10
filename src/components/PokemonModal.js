@@ -58,7 +58,7 @@ const PokemonModal = (props) => {
         ? response.data.habitat.name
         : "UNKNOWN";
       setPokemonHabitat(
-        response.data.habitat ? response.data.habitat.name : "UNKNOWN"
+        response.data.habitat ? response.data.habitat.name : "Unknown"
       );
 
       setLoading(true);
@@ -108,7 +108,7 @@ const PokemonModal = (props) => {
                       />
                       <Button
                         variant={props.shiny ? "secondary" : "warning"}
-                        className="text-white btn-xs mt-3 "
+                        className="text-white btn-xs mt-lg-5 ml-lg-5 mt-md-5 ml-md-5"
                         onClick={clickHandler}
                         size="sm"
                       >
@@ -124,7 +124,7 @@ const PokemonModal = (props) => {
                       <h5 className="text-capitalize text-md-start text-center pt-4 font-italic ">
                         Habitat: {pokemonHabitat}
                       </h5>
-                      <p>
+                      <p className="small">
                         <small>{pokemonDescription}</small>
                       </p>
                     </>
