@@ -20,7 +20,7 @@ const PokemonCollection = ({ pokemon }) => {
         }}
         key={uuidv4()}
         xs={12}
-        md={3}
+        md={4}
         lg={2}
       >
         <PokemonCard setModalShow={setModalShow} pokemon={poke} />

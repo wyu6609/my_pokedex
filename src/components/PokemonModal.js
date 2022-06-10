@@ -23,6 +23,13 @@ const PokemonModal = (props) => {
   const [pokemonDescription, setPokemonDescription] = useState("");
   // set pokemon habitat
   const [pokemonHabitat, setPokemonHabitat] = useState("");
+
+  //shiny state
+  const [shiny, setShiny] = useState(false);
+  const clickHandler = () => {
+    setShiny(!shiny);
+  };
+
   useEffect(() => {
     if (props.modaldata) {
       let URL = props.modaldata.data.species.url;
@@ -49,12 +56,14 @@ const PokemonModal = (props) => {
       {props.modaldata ? (
         <Modal
           {...props}
-          size="lg"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
           className={`${props.modaldata.data.types[0].type.name}-text`}
         >
-          <Modal.Header className="text-center" closeButton>
+          <Modal.Header
+            className={`${props.modaldata.data.types[0].type.name} text-white `}
+          >
             <Modal.Title align="start" id="contained-modal-title-vcenter">
               <Container className="pokemon-modal-header">
                 <span className="pokemon-modal-id">{`id ${props.modaldata.data.id} `}</span>
@@ -70,22 +79,31 @@ const PokemonModal = (props) => {
                 <Col xs={12} md={6}>
                   <Container>
                     <Row>
-                      <Col>
+                      <Col className="pb-1">
                         <img
                           width="100"
-                          className="bg-light  rounded-circle"
-                          src={props.modaldata.data.sprites.front_default}
+                          className="bg-light  rounded-circle "
+                          src={
+                            shiny
+                              ? props.modaldata.data.sprites.front_default
+                              : props.modaldata.data.sprites.front_shiny
+                          }
                         />
                       </Col>
                       <Col>
                         <img
                           className="bg-light  rounded-circle"
-                          src={props.modaldata.data.sprites.back_default}
+                          src={
+                            shiny
+                              ? props.modaldata.data.sprites.back_default
+                              : props.modaldata.data.sprites.back_shiny
+                          }
                         />
                       </Col>
                     </Row>
                   </Container>
                 </Col>
+
                 <Col xs={12} md={6}>
                   {loading ? (
                     <>
@@ -93,6 +111,14 @@ const PokemonModal = (props) => {
                         Habitat: {pokemonHabitat}
                       </h5>
                       <p>{props.modaldata ? pokemonDescription : ""}</p>
+                      <Button
+                        variant="warning"
+                        className="text-white"
+                        onClick={clickHandler}
+                        size="sm"
+                      >
+                        Toggle Shiny
+                      </Button>
                     </>
                   ) : (
                     <Spinner
@@ -107,12 +133,11 @@ const PokemonModal = (props) => {
               </Row>
             </Container>
           </Modal.Body>
-          <Modal.Footer className="mx-auto ">
+          <Modal.Footer className="mx-auto border-0">
             {props.modaldata.data.types.map((el) => {
               return (
                 <Button
                   key={uuidv4()}
-                  size="sm"
                   className={`type-btn text-uppercase  ${el.type.name}`}
                 >
                   {el.type.name}

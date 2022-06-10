@@ -7,10 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <Stack gap={4}>
+    <>
       <NavComponent />
       <PokemonPage />
-    </Stack>
+    </>
   );
 }
 

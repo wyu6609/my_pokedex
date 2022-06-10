@@ -21,6 +21,11 @@
   cursor: default !important;
 }
 
+.modal-header > .btn-close {
+  color: #fff !important;
+  opacity: 1;
+}
+
 /* pokemon types by background color */
 .bug {
   background-color: #9dab18 !important;

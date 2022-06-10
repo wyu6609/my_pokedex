@@ -81,7 +81,7 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
   };
 
   return (
-    <Card className={`card shadow  ${typeColor} text-white `}>
+    <Card size="lg" className={`card shadow  ${typeColor} text-white `}>
       <Container className="d-flex justify-content-between pt-2">
         <span className="pokemon-id"># {pokemon.data.id}</span>
         <span>
