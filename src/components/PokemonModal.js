@@ -76,7 +76,7 @@ const PokemonModal = (props) => {
           <Modal.Body>
             <Container>
               <Row>
-                <Col xs={12} md={6}>
+                <Col xs={6} s={6} md={6}>
                   <Container>
                     <Row>
                       <Col className="pb-1">
@@ -104,13 +104,13 @@ const PokemonModal = (props) => {
                   </Container>
                 </Col>
 
-                <Col xs={12} md={6}>
+                <Col xs={6} s={6} md={6} lg>
                   {loading ? (
                     <>
                       <h5 className="text-capitalize text-md-start text-center pt-4 font-italic ">
                         Habitat: {pokemonHabitat}
                       </h5>
-                      <p>{props.modaldata ? pokemonDescription : ""}</p>
+                      <p>{pokemonDescription}</p>
                       <Button
                         variant={props.shiny ? "secondary" : "warning"}
                         className="text-white"
