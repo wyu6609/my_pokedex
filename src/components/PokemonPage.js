@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "./Search";
 import PokemonCollection from "./PokemonCollection";
+
 import { Container, Stack, Spinner } from "react-bootstrap";
 
 const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit= 913";
@@ -154,21 +155,26 @@ const PokemonPage = () => {
 
   return (
     <Container className="mx-auto">
-      <Stack className="px-5" gap={4}>
-        <Search
-          searchTerm={searchTerm}
-          onChangeSearch={setSearchTerm}
-          setStatus={setStatus}
-          status={status}
-        />
-        {loading ? (
-          <PokemonCollection pokemon={pokemonsToDisplay} />
-        ) : (
-          <Spinner animation="border" variant="danger" className="mx-auto ">
+      <Search
+        searchTerm={searchTerm}
+        onChangeSearch={setSearchTerm}
+        setStatus={setStatus}
+        status={status}
+      />
+      {loading ? (
+        <PokemonCollection className="mt-2" pokemon={pokemonsToDisplay} />
+      ) : (
+        <div className="d-flex align-items-center my-auto">
+          <Spinner
+            style={{ width: "10", height: "10" }}
+            animation="border"
+            variant="danger"
+            className="mx-auto"
+          >
             <span className="visually-hidden">Loading...</span>
           </Spinner>
-        )}
-      </Stack>
+        </div>
+      )}
     </Container>
   );
 };

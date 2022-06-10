@@ -86,7 +86,7 @@ const PokemonModal = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container>
+            <Container className="pt-md-2">
               <Row>
                 <Col xs={6} s={6} md={6}>
                   <Row sx={6}>
