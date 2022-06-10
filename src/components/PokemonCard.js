@@ -7,7 +7,7 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
   //set pokemon type state
   const [pokeType, setPokeType] = useState(pokemon.data.types[0].type.name);
   //set pokemon type color state
-  const [typeColor, setTypeColor] = useState("");
+  const [typeColor, setTypeColor] = useState(pokemon.data.types[0].type.name);
 
   // set color type
   useEffect(() => {
@@ -87,7 +87,7 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
       onClick={() => {
         setModalShow(true);
       }}
-      className={`card shadow  ${typeColor} text-white `}
+      className={`card shadow  ${pokemon.data.types[0].type.name} text-white `}
     >
       <Container className="d-flex justify-content-between pt-2">
         <span className="pokemon-id"># {pokemon.data.id}</span>
