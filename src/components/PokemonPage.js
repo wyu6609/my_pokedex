@@ -149,8 +149,10 @@ const PokemonPage = () => {
   }, [pokemon, status]);
 
   //filter Pokemon by search
-  const pokemonsToDisplay = filteredPokemon.filter((poke) =>
-    poke.data.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const pokemonsToDisplay = filteredPokemon.filter(
+    (poke) =>
+      poke.data.id == searchTerm ||
+      poke.data.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
