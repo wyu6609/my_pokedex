@@ -11,10 +11,6 @@ import {
 import "./PokemonModal.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-// function
-const capitalizeFirstLetter = (str) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
 
 const PokemonModal = (props) => {
   //set loading
@@ -43,7 +39,7 @@ const PokemonModal = (props) => {
     axios.get(URL_ENDPOINT).then((response) => {
       let englishDescriptionObj = response.data.flavor_text_entries.find(
         function (obj) {
-          return obj.language.name == "en";
+          return obj.language.name === "en";
         }
       );
 
@@ -54,9 +50,6 @@ const PokemonModal = (props) => {
 
       setPokemonDescription(englishDescription);
 
-      let habitat = response.data.habitat
-        ? response.data.habitat.name
-        : "UNKNOWN";
       setPokemonHabitat(
         response.data.habitat ? response.data.habitat.name : "Unknown"
       );
@@ -73,7 +66,7 @@ const PokemonModal = (props) => {
           size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          className={`${props.modaldata.data.types[0].type.name}-text`}
+          className={` ${props.modaldata.data.types[0].type.name}-text`}
         >
           <Modal.Header
             className={`${props.modaldata.data.types[0].type.name} text-white `}

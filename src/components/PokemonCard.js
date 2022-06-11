@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Card, Badge, Container } from "react-bootstrap";
-import axios from "axios";
+import { Card, Badge } from "react-bootstrap";
+
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemon, setModalShow }) => {
