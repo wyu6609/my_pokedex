@@ -3,7 +3,7 @@ import axios from "axios";
 import Search from "./Search";
 import PokemonCollection from "./PokemonCollection";
 
-import { Container, Stack, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 const URL_ENDPOINT = "https://pokeapi.co/api/v2/pokemon?limit= 913";
 
@@ -156,7 +156,7 @@ const PokemonPage = () => {
   );
 
   return (
-    <Container className="mx-auto">
+    <>
       <Search
         searchTerm={searchTerm}
         onChangeSearch={setSearchTerm}
@@ -177,7 +177,7 @@ const PokemonPage = () => {
           </Spinner>
         </div>
       )}
-    </Container>
+    </>
   );
 };
 

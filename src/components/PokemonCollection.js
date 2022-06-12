@@ -41,9 +41,8 @@ const PokemonCollection = ({ pokemon }) => {
           setModalShow(false);
         }}
       />
-      <Container>
-        <Row>{cards}</Row>
-      </Container>
+
+      <Row className="mx-4">{cards}</Row>
     </>
   );
 };
