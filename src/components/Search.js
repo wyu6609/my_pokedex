@@ -19,8 +19,8 @@ const Search = ({ searchTerm, onChangeSearch, setStatus, status }) => {
   };
 
   return (
-    <Container>
-      <Dropdown as={InputGroup} className="my-4  sticky-top shadow ">
+    <Container className="sticky-top">
+      <Dropdown as={InputGroup} className="my-4   shadow ">
         <FormControl
           placeholder="Search a pokemon by id or name"
           aria-label="Search Pokemon"
