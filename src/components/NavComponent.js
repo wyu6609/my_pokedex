@@ -23,7 +23,6 @@ const NavComponent = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
             width="100%"
             height="50px"
-            className="d-inline-block align-top "
             alt="Pokemon logo"
           />
         </Navbar.Brand>
@@ -46,7 +45,7 @@ const NavComponent = () => {
                   let url = "https://pokeapi.co/";
                   window.open(url, "_blank");
                 }}
-                className="mb-2"
+                className="m-2"
                 variant="warning"
               >
                 Pokémon API
@@ -56,7 +55,7 @@ const NavComponent = () => {
                   let url = "https://pokemon.fandom.com/wiki/Pokemon_Wiki";
                   window.open(url, "_blank");
                 }}
-                className="mb-2"
+                className="m-2"
                 variant="success"
               >
                 Pokémon Wiki
@@ -66,8 +65,7 @@ const NavComponent = () => {
                   let url = "https://www.yuwilliam.com/projects";
                   window.open(url, "_blank");
                 }}
-                className="mb-2"
-                variant="primary"
+                className="m-2"
                 variant="primary"
               >
                 More Projects Here
