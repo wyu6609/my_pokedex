@@ -1,6 +1,11 @@
 ## POKEDEX
 
 Simple Pokedex built with React and Bootstrap.
+
+
+<a href = "https://pokeapi.co/">Pokemon API</a>
+<a href = "https://pokemon.fandom.com/">Pokemon Wiki</a>
+
 Utilizes Axios
 
 <a href="https://wills-pokedex.netlify.app/">Website here</a>
