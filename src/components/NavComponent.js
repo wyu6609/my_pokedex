@@ -17,7 +17,7 @@ const NavComponent = () => {
       key={false}
       expand={false}
     >
-      <Container fluid>
+      <Container className="d-flex justify-content-between">
         <Navbar.Brand placement="start">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
@@ -30,6 +30,8 @@ const NavComponent = () => {
           aria-controls={`offcanvasNavbar-expand-false`}
           variant="primary"
         />
+      </Container>
+      <Container>
         <Navbar.Offcanvas
           variant="primary"
           id={`offcanvasNavbar-expand-false`}
