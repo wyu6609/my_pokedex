@@ -12,7 +12,7 @@ const NavComponent = () => {
   return (
     <Navbar
       bg="danger"
-      variant="light"
+      variant="dark"
       className="shadow "
       key={false}
       expand={false}
@@ -26,7 +26,10 @@ const NavComponent = () => {
             alt="Pokemon logo"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-false`} />
+        <Navbar.Toggle
+          aria-controls={`offcanvasNavbar-expand-false`}
+          variant="primary"
+        />
         <Navbar.Offcanvas
           variant="primary"
           id={`offcanvasNavbar-expand-false`}
