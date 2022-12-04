@@ -139,7 +139,13 @@ const PokemonModal = (props) => {
               return (
                 <Button
                   key={uuidv4()}
-                  className={`type-btn btn btn-xs text-uppercase  ${el.type.name}`}
+                  className={`button_hover type-btn btn btn-xs text-uppercase  ${el.type.name}`}
+                  onClick={() => {
+                    console.log("click");
+
+                    let url = `https://pokemon.fandom.com/wiki/${el.type.name}_type`;
+                    window.open(url, "_blank");
+                  }}
                 >
                   {el.type.name}
                 </Button>
