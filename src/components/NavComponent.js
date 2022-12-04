@@ -18,10 +18,10 @@ const NavComponent = () => {
       expand={false}
     >
       <Container className="d-flex justify-content-between">
-        <Navbar.Brand placement="start">
+        <Navbar.Brand>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
-            width="100%"
+            width="90%"
             height="50px"
             alt="Pokemon logo"
           />
@@ -36,7 +36,6 @@ const NavComponent = () => {
           variant="primary"
           id={`offcanvasNavbar-expand-false`}
           aria-labelledby={`offcanvasNavbarLabel-expand-false`}
-          placement="end"
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
