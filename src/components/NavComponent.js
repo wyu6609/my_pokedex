@@ -18,7 +18,7 @@ const NavComponent = () => {
       expand={false}
     >
       <Container fluid>
-        <Navbar.Brand>
+        <Navbar.Brand placement="start">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
             width="100%"
@@ -40,7 +40,7 @@ const NavComponent = () => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
+            <Nav className=" pe-3">
               <Button
                 onClick={() => {
                   let url = "https://pokeapi.co/";
