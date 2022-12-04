@@ -107,7 +107,7 @@ const PokemonPage = () => {
         break;
       case "steel":
         setFilteredPokemon(
-          pokemon.filter((poke) => poke.data.types[0].type.name === "psychic")
+          pokemon.filter((poke) => poke.data.types[0].type.name === "steel")
         );
         break;
       case "water":
