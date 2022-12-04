@@ -73,9 +73,17 @@ const PokemonModal = (props) => {
           >
             <Badge className="pokemon-modal-id bg-secondary p-2">{`id ${props.modaldata.data.id} `}</Badge>
             <Modal.Title align="start" id="contained-modal-title-vcenter">
-              <span className="text-uppercase pokemon-modal-name">
-                {props.modaldata.data.name}
-              </span>
+              <Button
+                className="button_hover"
+                onClick={() => {
+                  let url = `https://pokemon.fandom.com/wiki/${props.modaldata.data.name}`;
+                  window.open(url, "_blank");
+                }}
+              >
+                <span className="text-uppercase pokemon-modal-name">
+                  {props.modaldata.data.name}
+                </span>
+              </Button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
