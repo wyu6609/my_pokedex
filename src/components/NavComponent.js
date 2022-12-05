@@ -17,7 +17,7 @@ const NavComponent = () => {
       key={false}
       expand={false}
     >
-      <Container className="flex-row justify-content-between">
+      <Container fluid>
         <Navbar.Brand>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
@@ -27,11 +27,10 @@ const NavComponent = () => {
           />
         </Navbar.Brand>
         <Navbar.Toggle
+          className=""
           aria-controls={`offcanvasNavbar-expand-false`}
           variant="primary"
         />
-      </Container>
-      <Container>
         <Navbar.Offcanvas
           variant="primary"
           id={`offcanvasNavbar-expand-false`}
