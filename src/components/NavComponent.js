@@ -18,7 +18,7 @@ const NavComponent = () => {
       expand={false}
     >
       <Container fluid>
-        <Navbar.Brand>
+        <Navbar.Brand className="text-align-center">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
             width="90%"
@@ -26,11 +26,11 @@ const NavComponent = () => {
             alt="Pokemon logo"
           />
         </Navbar.Brand>
-        <Navbar.Toggle
+        {/* <Navbar.Toggle
           className=""
           aria-controls={`offcanvasNavbar-expand-false`}
           variant="primary"
-        />
+        /> */}
         <Navbar.Offcanvas
           variant="primary"
           id={`offcanvasNavbar-expand-false`}
