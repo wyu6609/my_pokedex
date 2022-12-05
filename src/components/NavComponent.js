@@ -17,7 +17,7 @@ const NavComponent = () => {
       key={false}
       expand={false}
     >
-      <Container className="d-flex flex-row justify-content-between">
+      <Container className="flex-row justify-content-between">
         <Navbar.Brand>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
