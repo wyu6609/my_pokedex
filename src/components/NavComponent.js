@@ -26,56 +26,7 @@ const NavComponent = () => {
             alt="Pokemon logo"
           />
         </Navbar.Brand>
-        {/* <Navbar.Toggle
-          className=""
-          aria-controls={`offcanvasNavbar-expand-false`}
-          variant="primary"
-        /> */}
-        <Navbar.Offcanvas
-          variant="primary"
-          id={`offcanvasNavbar-expand-false`}
-          aria-labelledby={`offcanvasNavbarLabel-expand-false`}
-        >
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
-              More Info
-            </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Nav className=" pe-3">
-              <Button
-                onClick={() => {
-                  let url = "https://pokeapi.co/";
-                  window.open(url, "_blank");
-                }}
-                className="m-2"
-                variant="warning"
-              >
-                Pokémon API
-              </Button>
-              <Button
-                onClick={() => {
-                  let url = "https://pokemon.fandom.com/wiki/Pokemon_Wiki";
-                  window.open(url, "_blank");
-                }}
-                className="m-2"
-                variant="success"
-              >
-                Pokémon Wiki
-              </Button>
-              <Button
-                onClick={() => {
-                  let url = "https://www.yuwilliam.com/projects";
-                  window.open(url, "_blank");
-                }}
-                className="m-2"
-                variant="primary"
-              >
-                More Projects Here
-              </Button>
-            </Nav>
-          </Offcanvas.Body>
-        </Navbar.Offcanvas>
+        
       </Container>
     </Navbar>
   );
