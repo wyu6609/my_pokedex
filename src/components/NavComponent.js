@@ -17,7 +17,7 @@ const NavComponent = () => {
       key={false}
       expand={false}
     >
-      <Container fluid>
+      <Container className="d-flex justify-content-center">
         <Navbar.Brand className="text-align-center">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
@@ -26,7 +26,6 @@ const NavComponent = () => {
             alt="Pokemon logo"
           />
         </Navbar.Brand>
-        
       </Container>
     </Navbar>
   );
