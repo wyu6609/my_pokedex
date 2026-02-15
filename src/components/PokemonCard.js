@@ -3,11 +3,17 @@ import { Card, Badge } from "react-bootstrap";
 
 import "./PokemonCard.css";
 
-const PokemonCard = ({ pokemon, setModalShow }) => {
+const PokemonCard = ({
+  pokemon,
+  setModalShow,
+  isFavorite = false,
+  onToggleFavorite,
+}) => {
   //set pokemon type state
   const [pokeType, setPokeType] = useState(pokemon.data.types[0].type.name);
   //set pokemon type color state
   const [typeColor, setTypeColor] = useState(pokemon.data.types[0].type.name);
+  const [isFav, setIsFav] = useState(isFavorite);
 
   // set color type
   useEffect(() => {
@@ -81,58 +87,143 @@ const PokemonCard = ({ pokemon, setModalShow }) => {
     setFront(!front);
   };
 
+  const toggleFavorite = (event) => {
+    event.stopPropagation();
+    setIsFav(!isFav);
+    if (onToggleFavorite) {
+      onToggleFavorite(pokemon.data.id);
+    }
+  };
+
+  const hp = pokemon.data.stats[0].base_stat;
+  const attack = pokemon.data.stats[1].base_stat;
+  const defense = pokemon.data.stats[2].base_stat;
+  const maxStat = 150;
+
   return (
     <Card
       size="lg"
       onClick={() => {
         setModalShow(true);
       }}
-      className={`card shadow  ${pokemon.data.types[0].type.name} text-white p-1`}
+      className={`card shadow pokemon-card border-${typeColor} text-dark p-2`}
     >
       <Badge
         pill
         bg="transparent"
-        text="white"
-        className="position-absolute top-0 start-0"
+        text="dark"
+        className="position-absolute top-0 start-0 mt-2 ms-2 pokemon-id-badge"
       >
-        # {pokemon.data.id}
+        #{pokemon.data.id}
       </Badge>
 
-      <span onClick={clickHandler}>
-        <svg
-          className="align-info-svg position-absolute top-0 end-0 mt-1 mr-1"
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 24 24"
-          height="1.2em"
-          width="1.2em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M6.758 8.758L5.344 7.344C4.537 8.15 3.9 9.139 3.503 10.203l1.873.701C5.675 10.105 6.152 9.363 6.758 8.758zM19 12.999c0-2.138-.832-4.146-2.344-5.655C15.385 6.07 13.758 5.287 12 5.069V2L7 6l5 4V7.089c1.222.204 2.349.775 3.242 1.669C16.376 9.891 17 11.397 17 13c0 .001 0 .002 0 .002 0 .33-.033.655-.086.977-.007.043-.011.088-.019.131-.058.307-.142.606-.247.902-.208.585-.506 1.135-.891 1.634-.16.209-.331.412-.516.597-.183.183-.379.349-.583.506-.048.037-.096.072-.145.107-.193.141-.393.271-.601.388-.523.292-1.086.504-1.676.627-.142.03-.285.05-.43.069-.062.009-.122.021-.184.027-.633.064-1.28.031-1.898-.103l-.424 1.955C9.857 20.939 10.429 21 11 21c.28 0 .559-.016.834-.045.069-.007.138-.021.207-.03.205-.026.409-.056.61-.098.018-.004.035-.005.053-.009l-.001-.005c.749-.161 1.467-.428 2.136-.795l.001.001c.01-.006.019-.013.028-.019.284-.157.557-.337.821-.529.064-.046.127-.093.189-.141.27-.209.532-.43.777-.675.248-.247.47-.513.681-.785.021-.028.049-.053.07-.081L17.4 17.785c.462-.614.828-1.285 1.093-1.997l.008.003c.029-.078.05-.158.076-.237.037-.11.075-.221.107-.333.04-.14.073-.281.105-.423.022-.099.048-.195.066-.295.032-.171.056-.344.076-.516.01-.076.023-.15.03-.227.023-.249.037-.5.037-.753C19 13.005 19 13.003 19 12.999L19 12.999C19 12.999 19 12.999 19 12.999L19 12.999zM6.197 16.597l-1.6 1.201c.229.305.48.594.746.858.541.541 1.155 1.001 1.823 1.367l.961-1.754c-.502-.275-.963-.62-1.371-1.029C6.557 17.042 6.369 16.825 6.197 16.597zM5 13c0-.145.005-.287.015-.429l-1.994-.143C3.007 12.617 3 12.807 3 13c0 .964.17 1.905.504 2.8l1.873-.701C5.127 14.43 5 13.724 5 13z"></path>
-        </svg>
+      <span
+        className="favorite-icon"
+        onClick={toggleFavorite}
+        title={isFav ? "Remove from favorites" : "Add to favorites"}
+        style={{ cursor: "pointer" }}
+      >
+        {isFav ? (
+          <svg
+            className="position-absolute top-0 end-0 mt-2 me-2"
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 24 24"
+            height="1.3em"
+            width="1.3em"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ color: "#FFD700" }}
+          >
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2l-2.81 6.63L2 9.24l5.46 4.73L5.82 21 12 17.27z"></path>
+          </svg>
+        ) : (
+          <svg
+            className="position-absolute top-0 end-0 mt-2 me-2 info-svg"
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 24 24"
+            height="1.3em"
+            width="1.3em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
+          </svg>
+        )}
       </span>
 
-      <Card.Title className="text-capitalize m-2 " align="center">
+      <Card.Title
+        className="text-capitalize text-center font-weight-bold"
+        style={{ fontSize: "1.1rem", marginTop: "1.5rem" }}
+      >
         {pokemon.data.name}
       </Card.Title>
-      <Card.Body>
+      <Card.Body className="p-2">
         <Card.Img
-          className="bg-grey rounded-circle "
+          className="pokemon-image rounded-3"
           variant="top"
           src={
             front
               ? pokemon.data.sprites.front_default
               : pokemon.data.sprites.back_default
           }
+          onClick={clickHandler}
+          style={{ cursor: "pointer" }}
         />
 
-        <Card.Subtitle align="center" className="">
-          {pokemon.data.weight} lbs
-        </Card.Subtitle>
-        <Card.Subtitle align="center" className="pt-2 text-uppercase">
-          {pokeType}
-        </Card.Subtitle>
+        <div className="types-container mt-2 d-flex gap-2 justify-content-center flex-wrap">
+          {pokemon.data.types.map((type, index) => (
+            <Badge key={index} className={`${type.type.name} type-badge`}>
+              {type.type.name}
+            </Badge>
+          ))}
+        </div>
+
+        <div className="stats-container mt-3">
+          <div className="stat-row d-flex justify-content-between align-items-center mb-2">
+            <span className="stat-label" style={{ fontSize: "0.75rem" }}>
+              HP
+            </span>
+            <div className="stat-bar">
+              <div
+                className="stat-fill hp"
+                style={{ width: `${(hp / maxStat) * 100}%` }}
+              ></div>
+            </div>
+            <span className="stat-value" style={{ fontSize: "0.7rem" }}>
+              {hp}
+            </span>
+          </div>
+          <div className="stat-row d-flex justify-content-between align-items-center mb-2">
+            <span className="stat-label" style={{ fontSize: "0.75rem" }}>
+              ATK
+            </span>
+            <div className="stat-bar">
+              <div
+                className="stat-fill atk"
+                style={{ width: `${(attack / maxStat) * 100}%` }}
+              ></div>
+            </div>
+            <span className="stat-value" style={{ fontSize: "0.7rem" }}>
+              {attack}
+            </span>
+          </div>
+          <div className="stat-row d-flex justify-content-between align-items-center">
+            <span className="stat-label" style={{ fontSize: "0.75rem" }}>
+              DEF
+            </span>
+            <div className="stat-bar">
+              <div
+                className="stat-fill def"
+                style={{ width: `${(defense / maxStat) * 100}%` }}
+              ></div>
+            </div>
+            <span className="stat-value" style={{ fontSize: "0.7rem" }}>
+              {defense}
+            </span>
+          </div>
+        </div>
       </Card.Body>
     </Card>
   );

@@ -22,6 +22,29 @@ const PokemonPage = () => {
   //pokemon type filter state
   const [filteredPokemon, setFilteredPokemon] = useState([]);
 
+  // pagination state
+  const [displayCount, setDisplayCount] = useState(50);
+  const ITEMS_PER_PAGE = 50;
+
+  // favorites state
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem("pokemonFavorites");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // save favorites to localStorage
+  const saveFavoritesToStorage = (favs) => {
+    localStorage.setItem("pokemonFavorites", JSON.stringify(favs));
+  };
+
+  const toggleFavorite = (pokemonId) => {
+    const newFavorites = favorites.includes(pokemonId)
+      ? favorites.filter((id) => id !== pokemonId)
+      : [...favorites, pokemonId];
+    setFavorites(newFavorites);
+    saveFavoritesToStorage(newFavorites);
+  };
+
   //filter pokemon type handler
   const filterHandler = () => {
     switch (status) {
@@ -149,11 +172,21 @@ const PokemonPage = () => {
   }, [pokemon, status]);
 
   //filter Pokemon by search
-  const pokemonsToDisplay = filteredPokemon.filter(
+  const pokemonsToDisplay = filteredPokemon
+    .filter(
+      (poke) =>
+        poke.data.id == searchTerm ||
+        poke.data.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .slice(0, displayCount);
+
+  const totalFiltered = filteredPokemon.filter(
     (poke) =>
       poke.data.id == searchTerm ||
       poke.data.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).length;
+
+  const canLoadMore = displayCount < totalFiltered;
 
   return (
     <>
@@ -164,7 +197,35 @@ const PokemonPage = () => {
         status={status}
       />
       {loading ? (
-        <PokemonCollection className="mt-2" pokemon={pokemonsToDisplay} />
+        <>
+          <div className="mt-3 mx-4">
+            <small className="text-muted">
+              Showing {pokemonsToDisplay.length} of {totalFiltered} Pokémon
+            </small>
+          </div>
+          <PokemonCollection
+            className="mt-2"
+            pokemon={pokemonsToDisplay}
+            favorites={favorites}
+            onToggleFavorite={toggleFavorite}
+          />
+          {canLoadMore && (
+            <div className="d-flex justify-content-center mt-4 mb-4">
+              <button
+                className="btn btn-danger btn-lg"
+                onClick={() => setDisplayCount(displayCount + ITEMS_PER_PAGE)}
+                style={{
+                  padding: "10px 30px",
+                  fontSize: "1rem",
+                  fontWeight: "600",
+                  borderRadius: "25px",
+                }}
+              >
+                Load More Pokémon
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="d-flex align-items-center my-auto">
           <Spinner
