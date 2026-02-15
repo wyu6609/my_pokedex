@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import PokemonModal from "./PokemonModal";
 import { v4 as uuidv4 } from "uuid";
 
-const PokemonCollection = ({ pokemon, favorites = [], onToggleFavorite }) => {
+const PokemonCollection = ({ pokemon }) => {
   //modal pokemon data
   const [modalData, setModalData] = useState("");
   // pokemon details modal state
@@ -13,7 +13,6 @@ const PokemonCollection = ({ pokemon, favorites = [], onToggleFavorite }) => {
   const [shiny, setShiny] = useState(false);
 
   const cards = pokemon.map((poke) => {
-    const isFav = favorites.includes(poke.data.id);
     return (
       <Col
         onClick={() => {
@@ -26,12 +25,7 @@ const PokemonCollection = ({ pokemon, favorites = [], onToggleFavorite }) => {
         lg={3}
         xl={2}
       >
-        <PokemonCard
-          setModalShow={setModalShow}
-          pokemon={poke}
-          isFavorite={isFav}
-          onToggleFavorite={onToggleFavorite}
-        />
+        <PokemonCard setModalShow={setModalShow} pokemon={poke} />
       </Col>
     );
   });
@@ -48,7 +42,7 @@ const PokemonCollection = ({ pokemon, favorites = [], onToggleFavorite }) => {
         }}
       />
 
-      <Row className="mx-2 g-3">{cards}</Row>
+      <Row className="mx-4">{cards}</Row>
     </>
   );
 };
